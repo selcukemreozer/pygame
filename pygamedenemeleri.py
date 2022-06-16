@@ -59,7 +59,7 @@ class MySprite(pygame.sprite.Sprite):
         self.image = self.images[self.index]
         
         
-# Define a Player object by extending pygame.sprite.Sprite
+# Define a Player object by extending pygame.sprite.Sprite.
 # The surface drawn on the screen is now an attribute of 'player'
 class Player(pygame.sprite.Sprite):
     def __init__(self):

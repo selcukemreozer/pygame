@@ -1,7 +1,7 @@
 import pygame
  
  
-SIZE = WIDTH, HEIGHT = 600, 400 #the width and height of our screen
+SIZE = WIDTH, HEIGHT = 600, 400 #the width and height of our screen.
 BACKGROUND_COLOR = pygame.Color('white') #The background colod of our window
 FPS = 10 #Frames per second
  
