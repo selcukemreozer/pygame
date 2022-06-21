@@ -27,24 +27,37 @@ while run:
     # pygame.draw.line(screen, (255, 255, 255), (x1, y1), (x2, y2), 4)
     xsaniye = -50 * round(math.sin(math.radians(derece)), 5) + 250
     ysaniye = -50 * round(math.cos(math.radians(derece)), 5) + 250
+
+    """
+    saniye = -25 * round(math.sin(math.radians(derece)), 5) + 100
+    saniye2 = -25 * round(math.cos(math.radians(derece)), 5) + 100
+    saniye3 = 25 * round(math.sin(math.radians(derece)), 5) + 100
+    saniye4 = 25 * round(math.cos(math.radians(derece)), 5) + 100
+    """
+
     xdakika = -50 * round(math.sin(math.radians(dereceDK)), 5) + 250
     ydakika = -50 * round(math.cos(math.radians(dereceDK)), 5) + 250
-    xsaat   = -50 * round(math.sin(math.radians(dereceST)), 5) + 250
-    ysaat = -50 * round(math.cos(math.radians(dereceST)), 5) + 250
+    xsaat   = -40 * round(math.sin(math.radians(dereceST)), 5) + 250
+    ysaat   = -40 * round(math.cos(math.radians(dereceST)), 5) + 250
+
+    # pygame.draw.line(screen, (255, 255, 255), (100, 100), (saniye, saniye2))
+    # pygame.draw.line(screen, (255, 255, 255), (100, 100), (saniye3, saniye4))
+
     pygame.draw.line(screen, (255, 255, 255), (250, 250), (xsaniye, ysaniye))
-    pygame.draw.line(screen, (0, 0, 255), (250, 250), (xdakika, ydakika), 3)
+    pygame.draw.line(screen, (0, 0, 255), (250, 250), (xdakika, ydakika), 2)
     pygame.draw.line(screen, (0, 255, 255), (250, 250), (xsaat, ysaat), 3)
 
     derece-=6
+
     if derece == 0:
         derece=360
-        dereceDK-=6
+        dereceDK-=6 # her 60 saniyede yelkovan 6 derece ilerliyor. Her dakika 6 derece.
         sayac+=1
 
     if dereceDK == 0:
         dereceDK = 360
 
-    if sayac == 6:
+    if sayac == 6: # akrep her 6 saniyede 3 derece hareket ediyor. Her 1 saat 30 derece. 3 x 10 = 30 derece = 1saat
         dereceST -= 3
         sayac = 0
 
@@ -52,7 +65,7 @@ while run:
         dereceST = 360
 
     # print(f"\ndegree:{derece}\nx1:{x1 - 100}\ny1:{y1 - 100}\nx2:{x2 - 100}\ny2:{y2 - 100}\n")
-    sleep(0.0001)
+    sleep(0.1)
     """
     if y1 == 200:
         donus_y = True
