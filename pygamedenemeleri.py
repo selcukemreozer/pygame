@@ -25,7 +25,7 @@ from pygame.locals import (
 clock = pygame.time.Clock()
 pygame.init()
 
-# for animation
+# for animations
 class MySprite(pygame.sprite.Sprite):
     def __init__(self):
         super(MySprite, self).__init__()
@@ -147,49 +147,54 @@ screen = pygame.display.set_mode(screen_size)
 ADDENEMY = pygame.USEREVENT + 1
 pygame.time.set_timer(ADDENEMY, 250)
 
+
 running = True
 
 # oyun döngüsü
-while running:
+def game(loop):
 
-    for event in pygame.event.get():
-        
-        if event.type == pygame.QUIT:
+    while loop:
 
-            running = False
+        for event in pygame.event.get():
 
-        # add e new enemy?
-        elif event.type == ADDENEMY:
-            # create the new enemy and add it to sprite groups
-            new_enemy = Enemy()
-            enemies.add(new_enemy)
-            all_sprites.add(new_enemy)
-            
-    # Bu, her karenin başında basılan tuşları içeren bir sözlük döndürür
-    pressed_keys = pygame.key.get_pressed()
+            if event.type == pygame.QUIT:
 
-    # kullanıcı tuşlara bastığında oyunucunun konumunu günceller
-    player.update(pressed_keys)
-    enemies.update()
-    
-    screen.fill((255, 0, 0))
+                loop = False
 
-    # draw all sprites
-    for entity in all_sprites:
-        screen.blit(entity.surf, entity.rect)
+            # add e new enemy?
+            elif event.type == ADDENEMY:
+                # create the new enemy and add it to sprite groups
+                new_enemy = Enemy()
+                enemies.add(new_enemy)
+                all_sprites.add(new_enemy)
 
-    # Check if any enemies have collided with the player
-    # if pygame.sprite.spritecollideany(player, enemies):
-        # If so, then remove the player and stop the loop
-        # player.kill()
-        # running = False
-    
-    # oyuncuyu ekrana çiziyor
-    screen.blit(player.surf, player.rect)
-    
-    # pygame.draw.circle(screen, (123, 123, 123), (123, 123), 75)
-    # time.sleep(0.01)
-    pygame.display.flip()
-    clock.tick(50)
-    
-pygame.quit()
+        # Bu, her karenin başında basılan tuşları içeren bir sözlük döndürür
+        pressed_keys = pygame.key.get_pressed()
+
+        # kullanıcı tuşlara bastığında oyunucunun konumunu günceller
+        player.update(pressed_keys)
+        enemies.update()
+
+        screen.fill((255, 0, 0))
+
+        # draw all sprites
+        for entity in all_sprites:
+            screen.blit(entity.surf, entity.rect)
+
+        # Check if any enemies have collided with the player
+        # if pygame.sprite.spritecollideany(player, enemies):
+            # If so, then remove the player and stop the loop
+            # player.kill()
+            # running = False
+
+        # oyuncuyu ekrana çiziyor
+        screen.blit(player.surf, player.rect)
+
+        # pygame.draw.circle(screen, (123, 123, 123), (123, 123), 75)
+        # time.sleep(0.01)
+        pygame.display.flip()
+        clock.tick(50)
+
+    pygame.quit()
+
+game(running)
