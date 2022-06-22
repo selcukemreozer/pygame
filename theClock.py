@@ -3,6 +3,7 @@ import math
 from time import sleep
 
 sleep_sayac = 0.1
+speedValue = 0.001
 derece = 360
 dereceDK = 360
 dereceST = 360
@@ -57,15 +58,15 @@ while run:
     # pygame.draw.line(screen, (255, 255, 255), (100, 100), (saniye3, saniye4))
 
     pygame.draw.line(screen, (255, 255, 255), (250, 250), (xsaniye, ysaniye))
-    pygame.draw.line(screen, (0, 0, 255), (250, 250), (xdakika, ydakika), 2)
+    pygame.draw.line(screen, kırmızı, (250, 250), (xdakika, ydakika), 2)
     pygame.draw.line(screen, (0, 255, 255), (250, 250), (xsaat, ysaat), 3)
 
     derece-=6
     for each in range(360):
+
         if (each) % 30 == 0:
             xsayi = -50 * round(math.sin(math.radians(each)), 5) + 250
             ysayi = -50 * round(math.cos(math.radians(each)), 5) + 250
-            print(f"derece:{derece}\nderece % 30:{str(int(each / 30))}")
             screen.blit(sayi(each), (xsayi-5, ysayi-15))
 
     if derece == 0:
@@ -84,9 +85,14 @@ while run:
         dereceST = 360
 
     # print(f"\ndegree:{derece}\nx1:{x1 - 100}\ny1:{y1 - 100}\nx2:{x2 - 100}\ny2:{y2 - 100}\n")
-    sleep_sayac+=0.001
-    if sleep_sayac == 0.001:
-        sleep_sayac = 0.01
+    sleep_sayac -= speedValue
+    if sleep_sayac < 0.001:
+        speedValue = -speedValue
+
+    elif sleep_sayac > 0.1:
+        speedValue = -speedValue
+
+    print(f"sleep_sayac:{sleep_sayac}")
     sleep(sleep_sayac)
 
 
