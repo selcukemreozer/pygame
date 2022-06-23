@@ -21,7 +21,7 @@ pygame.init()
 font = pygame.font.SysFont("ComicSansMs", 18)
 
 def sayi(value):
-    sayilar = font.render(str(int(value / 30)), 2, beyaz)
+    sayilar = font.render(str(int(12-(value / 30))), 2, beyaz)
     return  sayilar
 
 """def CIRCLE_DRAWER(x1, y1, x2, y2):
